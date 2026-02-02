@@ -1,0 +1,51 @@
+#include<SoftwareSerial.h>
+SoftwareSerial bt(10,11); // assigning 11 as RX and 10 as TX
+char ch;
+void setup(){
+  pinMode(2,OUTPUT);
+  pinMode(3,OUTPUT);
+  pinMode(4,OUTPUT);
+  pinMode(5,OUTPUT);
+  bt.begin(9600);
+  Serial.begin(9600);//beginning the bluetooth connection
+}
+void loop(){
+  if(bt.available())
+  {
+    ch=bt.read();
+    Serial.write(ch);
+  }
+  if(ch=='F'){
+    Serial.println("forward");//action to be performed if input is 'f'
+    digitalWrite(2,HIGH);
+    digitalWrite(3,LOW);
+    digitalWrite(4,HIGH);
+    digitalWrite(5,LOW);
+  } 
+  else if(ch=='B'){ //action to be performed if input is 'b'
+    digitalWrite(2,LOW);
+    digitalWrite(3,HIGH);
+    digitalWrite(4,LOW);
+    digitalWrite(5,HIGH);
+  }
+  else if(ch=='L'){ //action to be performed if input is 'l'
+    digitalWrite(2,HIGH);
+    digitalWrite(3,LOW);
+    digitalWrite(4,LOW);
+    digitalWrite(5,HIGH);
+  }
+    else if(ch=='R'){ //action to be performed if input is 'r' 
+    digitalWrite(2,LOW);
+    digitalWrite(3,HIGH);
+    digitalWrite(4,HIGH);
+    digitalWrite(5,LOW);
+    }
+    else if(ch=='S'){ //action to be performed if input is 's'
+    digitalWrite(2,LOW);
+    digitalWrite(3,LOW);
+    digitalWrite(4,LOW);
+    digitalWrite(5,LOW); 
+    }
+       
+    
+  }
